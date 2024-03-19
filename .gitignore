@@ -1,0 +1,28 @@
+# History files
+.Rhistory
+.Rapp.history
+# Session Data files
+.RData
+.RDataTmp
+# User-specific files
+.Ruserdata
+# RStudio files
+.Rproj.user/
+# knitr and R markdown default cache directories
+*_cache/
+/cache/
+# Temporary files created by R markdown
+*.utf8.md
+*.knit.md
+# R Environment Variables
+.Renviron
+# RStudio Connect folder
+rsconnect/
+# HTML
+*.html
+*_files
+**/*_files
+# Quarto
+.quarto
+/.quarto/
+**/*_extensions
