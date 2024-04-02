@@ -1,0 +1,221 @@
+/*-- scss:defaults --*/
+
+$body-bg: #ffffff !default;
+$body-color: #222 !default;
+$border-color: #00998A !default;
+$presentation-heading-color: #00998A !default;
+$presentation-title-slide-text-align: right;
+
+/*-- scss:rules --*/
+.reveal .slide h2 {
+  /*background-color: #00998A;
+  color: white;
+  padding-left: 10px;*/
+}
+
+
+.reveal .quarto-title-block .quarto-title-authors .quarto-title-author,
+.reveal .quarto-title-block .quarto-title-authors {
+  padding-right: 0px;
+  padding-left: 0px;
+  display: block;
+}
+
+div.quarto-title-block > div.slide-background-content { 
+  background-image: url("../../../../../img/Layout/fom-background-neu.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100% !important;
+}
+/* */ 
+
+.reveal h1.title {
+  font-size: 80px!important;
+  color: #C7FDF8;
+  margin-left: 50%;
+  margin-top: 25%;
+  margin-right: 5%;
+  
+}
+
+.reveal #title-slide p.subtitle,
+.quarto-title-authors {
+  font-size: 50px!important;
+  color: #C6E4E2;
+  margin-right: 5%;
+
+}
+
+
+section.slide.level2 {
+}
+
+/*
+ Gehört zu section.slide und hält recht genug Platz frei für das Logo.
+ Zusätzlich wird der Text mit "..." an der rechten Seite abgeschnitten.
+*/
+.reveal .slide h2 {
+  background-image: url("../../../../../img/Layout/fom-kopfzeile.png");
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: contain;
+  padding-top: 30px;
+  padding-left: 25px;
+  width: calc(100% - 0.46em);
+  height: 80px;
+  font-size: 56px!important;
+  color: #FFFFFF;
+}
+
+.reveal p, 
+.reveal .slides section {
+  font-size: 45px;
+}
+
+.reveal .slide p,
+.reveal .slide ol,
+.reveal .slide ul {
+    padding-left: 25px!important;
+  }
+
+.reveal div.footnote,
+.reveal div.footnote p,
+div.footnote {
+  font-size: 18px;
+}
+
+div.footer {
+  border-top: solid #00998A !important;
+  margin-top: 8px;
+  padding-top: 8px;
+}
+
+.reveal div.footer p, 
+div.footer p {
+  font-size: 22px!important;
+}
+
+@page :last {
+  display: none;
+}
+
+figcaption,
+p.caption,
+div.caption {
+  font-size: 40% !important;
+  padding-left: 10px!important;
+  padding-right: 10px!important;
+  /* padding-top: 5px!important; */
+  /* text-align: left!important; */
+  margin-top: 0 !important;
+}
+
+figcaption {
+  /* display: inline-block !important;*/
+  vertical-align: top;
+}
+
+#quarto-log-error-modal .modal__overlay {
+  display: none !important;
+}
+
+
+.right {
+  text-align: right;
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.left {
+  text-align: left;
+  margin-left: 0;
+  margin-right: auto;
+}
+
+/*
+  Damit die QR Codes richtig positioniert werden können müssen
+  die display Werte auf inline-blocks und nicht blocks gesetzt werden.
+*/
+.qrcode img {
+  display: inline-block!important;
+}
+
+/*
+By default, KaTeX math is rendered in a 1.21× larger font than the surrounding context, which makes super- and subscripts easier to read. You can control this using CSS, for example, to set to 1.1×:
+*/
+.katex { 
+  font-size: 1.0em!important;
+}
+
+@media print {
+  @page {
+    size: landscape;
+    margin: 0 15pt; 
+  }
+  @page {
+    size: A4 landscape;
+    margin: 0 15pt; 
+  }
+  @page:first div.footer{
+    display:none !important;
+  }
+  h2 {
+      font-size: clamp(2em, calc(2em + 1vw), 3em);
+  }
+  .reveal .slide li {
+    margin-left: 1em !important;
+  }
+  .reveal .slide h2 {
+    color: white !important;
+    font-size: 200% !important;
+  }
+  html:not(.print-pdf) #title-slide h1,
+  html:not(.print-pdf) #title-slide p,
+  html:not(.print-pdf) #title-slide div {
+    text-align: right !important;
+  }
+  html:not(.print-pdf) #title-slide h1 {
+    font-size: 76px !important;
+  }
+  html:not(.print-pdf) div.slide-chalkboard-buttons,
+  html:not(.print-pdf) div.slide-chalkboard-buttons span,
+  html:not(.print-pdf) div.slide-chalkboard-buttons span i,
+  html:not(.print-pdf) div.slide-menu-botton a,
+  html:not(.print-pdf) div.slide-menu-botton a i,
+  html:not(.print-pdf) div.slide-menu-botton {
+    display: none !important;
+  }
+  html:not(.print-pdf) .reveal .slide-chalkboard-buttons {
+    display: none !important;
+  }
+  html:not(.print-pdf) div#chalkboard {
+    display: none !important;
+  }
+  html:not(.print-pdf) div.columns,
+  html:not(.print-pdf) div.column {
+    display: flex !important;
+  }
+  html:not(.print-pdf) div.footer,
+  html:not(.print-pdf) div.center,
+  html:not(.print-pdf) div.center div.cell,
+  {
+    text-align: center!important;
+    margin: auto!important;
+  }
+  html:not(.print-pdf) .footer p{
+    text-align: center !important;
+    font-size: 90% !important;
+  }
+  html:not(.print-pdf) div.center div.cell figure,
+  html:not(.print-pdf) .reveal section img{
+    display: inline-block;
+  }
+  html:not(.print-pdf) p,
+  html:not(.print-pdf) li {
+    font-size: 100% !important;
+  }
+  html:not(.print-pdf) .reveal section img {
+    border: 0!important;
+    margin: auto!important;
+  }
+}
+

@@ -1,0 +1,24 @@
+title: "Haus- und Abschlussarbeiten"
+subtitle: "inklusive Statistik(en) mit R"
+institute: "FOM Dortmund"
+author: "Prof. Dr. Karsten Lübke"
+lang: de-DE
+slide-number: c
+from: markdown+emoji
+format: 
+  revealjs:
+    footer: "03.05.2024 | Karsten Lübke"
+    chalkboard: true
+    html-math-method: katex
+    main-font: Arial
+    width: 1920
+    height: 1200 #    height: 1200 oder 1080 
+    margin: 0
+    history: true
+    center: false
+    slide-number: true
+    theme:
+      - colors.scss
+      - fontsstyles.scss
+      - fom.scss # FOM Layout
+#      - fom-dls.scss # DLS Layout

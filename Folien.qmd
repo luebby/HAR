@@ -1,0 +1,519 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+# Vorspann
+
+<!-- Wichtig!!! Einmalig im Verzteichnis vorher im Terminal laufen lassen! -->
+<!-- quarto install extension quarto-ext/fontawesome -->
+
+## Über mich :nerd_face:
+
+- Prof. Dr. rer.nat. Karsten Lübke (m), seit 2009 an der FOM Dortmund
+
+- Wie John Tukey sagte:
+
+> The best thing about being a statistician is that you get to play in everyone's backyard.
+
+- {{< fa envelope >}}:  [karsten.luebke@fom.de](<mailto:karsten.luebke@fom.de>)
+
+- {{< fa brands mastodon >}}:  [@luebby42@data-folks.masto.host](https://data-folks.masto.host/@luebby42)
+
+## Finde die Regel :muscle:
+
+::: center
+{{< qrcode https://fomshinyapps.shinyapps.io/Regelfindung width=400 height=400 >}}
+
+<https://fomshinyapps.shinyapps.io/Regelfindung/>
+:::
+
+- Sie sollen eine Regel finden, der eine Folge von Zahlen genügt.
+
+- Sie dürfen Ihre Regel prüfen.
+
+- Geben Sie Ihre Regel ab.
+
+
+[Quelle: TheUpshot - David Leonhard, A Quick Puzzle to Test Your Problem Solving. <https://nyti.ms/45ooAzC>]{.tiny}
+
+## Confirmation Bias
+
+::: center
+![Quelle: [Sketchplanations](https://sketchplanations.com/confirmation-bias)](img/Sonstige/ConformationBias.avif){width=50% fig-align="center"}
+:::
+
+
+## PPDAC
+
+Schritte einer statistischen Untersuchung:
+
+1. **Problem**: Problemdefinition, Forschungsfrage: Was soll untersucht werden?
+
+2. **Plan**: Planung der Analyse, z. B. Operationalisierung / Variablenauswahl; Wahl des Stichprobenverfahrens und / oder Versuchsplanung.
+
+3. **Data**: Datenerhebung, Datenmanagement, Datenbereinigung.
+
+4. **Analysis**: Explorative Datenanalyse, Modellierung, Hypothesenprüfung.
+
+5. **Conclusion**: Schlussfolgerungen, Interpretation, neue Ideen, Kommunikation.
+
+# Hauptteil: Ein Beispiel
+
+## Problem
+
+- Abstrakt: Wie verbreitet ist das Problem des Confirmation Bias?
+
+- Konkret: Wie hoch ist der Anteil derjenigen, die eine Regel abgeben ohne einen Widerspruch erfahren zu haben?
+
+- Außerdem:
+
+  - Unterscheidet sich der Anteil der Widersprüche zwischen denjenigen deren Regel korrekt ist, von dem Anteil, deren Regel nicht korrekt ist?
+  
+  - Erhöht die Anzahl der Versuche die Wahrscheinlichkeit auf die richtige Regel zu kommen?
+
+::: callout-tip
+## Tipp
+
+Mit Literatur argumentieren. Hier Grundlagenwerk: Wason, P.C. (1960). On the failure to eliminate hypotheses in a conceptual task *Quarterly Journal of Experimental Psychology*, 12:3, 129-140. <https://doi.org/10.1080/17470216008416717>
+:::
+
+
+## Problem -- Checkliste
+
+- Die Fragstellung kann mit Daten beantwortet werden. [:ballot_box_with_check:]{.green}
+        
+- Es lohnt sich, die Fragestellung zu untersuchen. [:ballot_box_with_check:]{.green}
+        
+- Die interessierenden Variablen sind klar definiert und können erhoben werden. [:ballot_box_with_check:]{.green}
+  
+- Die Zielpopulation ist klar definiert. [:ballot_box_with_check:]{.green}
+
+::: callout-tip
+## Tipp
+
+Auf eine möglichst präzise Fragestellung achten.
+:::
+
+
+## Plan
+
+- Variablen:
+
+  - Anzahl Versuche.
+  
+  - Anzahl Versuche, die der Regel nicht entsprechen.
+  
+  - Abgegebene Regel. Diese wird dann bewertet ob richtig oder falsch.
+  
+- Zielpopulation: FOM Studierende in Vorlesungen mit wissenschaftlich, quantitativen Inhalt.
+
+- Erhebung: Anonym im Rahmen von Vorlesungen über eine [Shiny App](https://shiny.posit.co/). Übertragung der Antworten in ein [Google Sheet](https://www.google.com/intl/de/sheets/about/) mit Hilfe des Pakets [googlesheets4](https://googlesheets4.tidyverse.org/).
+
+  
+  
+## Plan -- Checkliste
+
+- Die interessierenden Variablen sind klar definiert und können erhoben werden. [:ballot_box_with_check:]{.green}
+
+- Die Zielpopulation ist klar definiert. [:ballot_box_with_check:]{.green}
+
+- Es ist möglich, die Daten in *ausreichender* Anzahl zu erheben. [:ballot_box_with_check:]{.green}
+
+- Ggf.: Die Anonymität/der Datenschutz ist gewährleistet. [:ballot_box_with_check:]{.green}
+    
+- Ggf.: Es sind keine negativen Auswirkungen oder Risiken für die Teilnehmenden zu erwarten. [:ballot_box_with_check:]{.green}
+
+::: callout-tip
+## Tipp
+
+Bei Umfragen etc. auf bewährte Messinstrumente zurückgreifen. Dabei aber Lizenzen usw. beachten. Z.B. <https://zis.gesis.org/>.
+:::
+
+## Ihre Meinung :muscle:
+
+Was schätzen Sie: Wie hoch ist der Anteil derjenigen, die eine Regel abgeben ohne einen Widerspruch erfahren zu haben?
+
+-   **A**: 0-20%
+
+-   **B**: 21-40%
+
+-   **C**: 41-60%
+
+-   **D**: 61-80%
+
+-   **E**: 81-100%
+
+## Data
+
+- Die Daten im Google Sheet können als Microsoft Excel Datei (`.xlsx`) heruntergeladen werden. Name der Datei: `Regeln finden.xlsx`.
+
+::: callout-note
+## Hinweis
+
+Über `googlesheets4` wäre auch ein direkter Import in {{< fa brands r-project >}} möglich.
+:::
+
+## Data -- Rohdaten
+
+```{r daten_zeigen}
+library(readxl)
+library(DT)
+Regeln <- read_excel("Regel finden.xlsx")
+datatable(Regeln[,-4], options = list(
+  pageLength = 5,
+  lengthMenu = c(5, 10)))
+```
+
+## Data -- Ergänzung
+
+- Es fehlt die Variable, die anzeigt ob die abgegebene Regel richtig ist.
+
+- Diese wird manuell ergänzt. 
+
+::: callout-warning
+## Warnung
+
+Fehler in der manuelle Bearbeitung sind schwer zu erkennen und zu beheben.
+:::
+
+
+## Data -- Ergänzte Rohdaten
+
+```{r zeigen_ergaenzt}
+datatable(Regeln, options = list(
+  pageLength = 5,
+  lengthMenu = c(5, 10)))
+```
+
+## Data -- Herausforderungen
+
+- Leerzeichen in den Variablennamen.
+
+- Teilweise erfolgte eine Abgabe ohne eigene Versuche.
+
+- Teilweise haben Teilnehmende keine Regel abgegeben.
+
+- Teilweise mehrfache Abgaben. 
+
+::: callout-important
+## Wichtig
+
+Entscheidungen im Umgang mit *fragwürdigen* Daten müssen immer begründet und dokumentiert werden.
+:::
+
+## Data -- {{< fa brands r-project >}} - Teil 1
+
+```{r daten_einlesen}
+#| echo: true
+#| 
+# Pakete
+library(readxl) # Für Excel Import
+library(janitor) # Zur Namensbereingung
+library(dplyr) # Zur Datenvorverarbeitung
+
+# Daten einlesen
+Regeln <- read_excel("Regel finden.xlsx")
+# Namen bereinigen
+Regeln <- Regeln |>
+  clean_names()
+# Datenstruktur
+str(Regeln)
+```
+
+## Data -- {{< fa brands r-project >}} - Teil 2
+
+```{r daten_bereinigen}
+#| echo: true
+
+Regeln <- Regeln |>
+  filter(versuche > 0) |> # Ohne eigenen Versuch eliminieren
+  na.omit() |> # Fehlende Werte (Regeln) eliminieren
+  mutate(anteil_fehl = davon_regel_nicht_erfullt/versuche) |> # Anteil Fehlversuche berechen 
+  mutate(fehl = ifelse( davon_regel_nicht_erfullt>0, "Ja", "Nein")) |> # Gab es überhaupt Fehlversuche?
+  mutate(abgabe = paste0(versuche,"-",davon_regel_nicht_erfullt,"-",vermutete_regel)) |> # Abgabe zusammenfassen
+  filter(abgabe != lag(abgabe, default = "1")) |> # Doppelte, aufeinanderfolgende Abgaben löschen
+  select(versuche, anteil_fehl, fehl, richtig) # Nicht mehr benötigte Variablen löschen
+
+# Datenstruktur
+str(Regeln)
+```
+
+::: callout-note
+## Hinweis
+
+Die doppelten Abgaben sind ein mittlerweile gelöstes Problem der Datenerhebung.
+:::
+## Data -- Die Daten final
+
+```{r zeigen_final}
+datatable(Regeln, options = list(
+  pageLength = 5,
+  lengthMenu = c(5, 10))) |>
+  formatRound('anteil_fehl', digits = 2)
+```
+
+## Data -- Checkliste
+
+- Die Datenerhebung und die Datenvorverarbeitung ist transparent und dokumentiert. [:ballot_box_with_check:]{.green}
+
+- Die originalen Rohdaten sind gesichert. [:ballot_box_with_check:]{.green}
+
+- Die Variablen und Beobachtungen wurden korrekt Format eingelesen. [:ballot_box_with_check:]{.green}
+
+- Ggf.: Datenbereinigungen und Datentransformationen sind begründet. [:ballot_box_with_check:]{.green}
+
+::: callout-tip
+## Tipp
+
+Planen Sie für diesen Schritt **viel** Zeit ein.
+:::
+
+## Analyse -- Anteil mit mindestens einen Fehlversuch
+
+```{r}
+#| label: anteil_fehl
+#| eval: true
+#| echo: true
+#| message: false
+# Paket mosaic
+library(mosaic)
+
+# Tabelle - absolut
+tally( ~ fehl, data = Regeln)
+
+# Anteil mit Fehlversuch zuweisen
+p_stipro <- prop( ~ fehl, data = Regeln,
+       success = "Ja")
+p_stipro
+```
+
+In der Stichprobe vom Umfang $n=`r nrow(Regeln)`$ haben $p=`r round(p_stipro*100,2)`\,\%$ mindestens einen Fehlversuch.
+
+::: callout-important
+## Wichtig
+
+Die Analysemethode hängt von der Verteilung der untersuchten Variablen ab.
+:::
+
+## Analyse -- Schätzunsicherheit
+
+::: {.columns}
+:::: {.column width="60%"}
+```{r}
+#| label: boot
+#| eval: false
+#| echo: true
+# Zufallszahlengenerator
+set.seed(1896)
+
+# Simuliere zufälliges Ziehen von Stichproben
+Bootvtlg <- do(1000) * prop( ~ fehl, success = "Ja",
+                             resample(Regeln))
+
+# Standardfehler
+se <- sd(~ prop_Ja, data = Bootvtlg)
+se
+# Konfidenzintervall
+ki <- qdata(~ prop_Ja, data = Bootvtlg, p = c(0.025, 0.975))
+ki
+
+# Visualisierung
+gf_histogram( ~ prop_Ja, data = Bootvtlg,
+              center = p_stipro, bins = 20) |>
+  gf_vline(xintercept = p_stipro) |>
+  gf_vline(xintercept = ki, linetype = "dashed")
+```
+::::
+
+:::: {.column width="40%"}
+::::: center
+```{r}
+#| label: boot
+#| eval: true
+```
+:::::
+::::
+:::
+
+Der geschätzte Standardfehler für $p$ liegt bei $`r round(se,4)`$, das 95%-Konfidenzintervall geht von $`r floor(ki[1]*10000)/10000`$ bis $`r ceiling(ki[2]*10000)/10000`$.
+
+::: callout-warning
+## Warnung
+
+Konfidenzintervalle werden häufig falsch interpretiert.
+:::
+
+## Analyse -- Hypothesenprüfung
+
+::: {.columns}
+:::: {.column width="60%"}
+```{r}
+#| label: h0
+#| eval: false
+#| echo: true
+# Zufallszahlengenerator
+set.seed(1896)
+
+# Simuliere Daten gemäß H_0
+Nullvtlg <- do(1000) * rflip(n = nrow(Regeln))
+
+# Visualisierung
+gf_histogram( ~ prop, data = Nullvtlg,
+              center = 0.5, bins = 20) |>
+  gf_vline(xintercept = p_stipro)
+
+# p-Wert
+pwert <- prop( ~ (prop <= p_stipro), data = Nullvtlg)
+pwert
+```
+::::
+
+:::: {.column width="40%"}
+::::: center
+```{r}
+#| label: h0
+#| eval: true
+```
+:::::
+::::
+:::
+
+Unter der Nullhypothese $H_0: \pi \geq 0.5$, d.h., mindestens der Anteil derjenigen, die mindestens einen Fehlversuch probieren, liegt in der Population bei mindestens 50% ist das Ergebnis unser Stichprobe mit $p=`r round(p_stipro*100,2)`\,\%$ sehr unwahrscheinlich (p-Wert $<1/10000$). $H_0$ wird zum Niveau $\alpha=5\,\%$ verworfen, der Anteil liegt statistisch erkennbar (signifikant) unter 50%.
+
+::: callout-warning
+## Warnung
+
+P-Werte werden häufig falsch interpretiert.
+:::
+
+## Analyse -- Vergleich mit und ohne Fehlversuch
+
+::: {.columns}
+:::: {.column width="60%"}
+```{r}
+#| label: vergleich1
+#| eval: false
+#| echo: true
+tally(richtig ~ fehl, data = Regeln,
+      format = "proportion")
+```
+::::
+
+:::: {.column width="40%"}
+::::: center
+```{r}
+#| label: vergleich1
+#| eval: true
+```
+:::::
+::::
+:::
+
+Während $`r round(tally(richtig ~ fehl, data = Regeln, format = "proportion")[1,1]*100,2)`\,\%$ derjenigen, die mindestens einen Fehlversuch hatten die Regel richtig erkannten, waren es nur $`r round(tally(richtig ~ fehl, data = Regeln, format = "proportion")[1,2]*100,2)`\,\%$ derjenigen ohne Fehlversuch.
+
+
+::: callout-note
+## Hinweis
+
+Auch hier können jetzt entsprechende Standardfehler, Konfidenzintervalle oder Effektstärken bestimmt werden. Auch können vorab spezifizierte Hypothesen geprüft werden.
+:::
+
+## Analyse -- Vergleich richtig/falsch
+
+::: {.columns}
+:::: {.column width="60%"}
+```{r}
+#| label: vergleich2
+#| eval: false
+#| echo: true
+# Violinplot
+gf_violin(versuche ~ richtig, data = Regeln)
+# Arithmetische Mittelwerte
+mittelwerte <- mean(versuche ~ richtig, data = Regeln)
+mittelwerte
+```
+::::
+
+:::: {.column width="40%"}
+::::: center
+```{r}
+#| label: vergleich2
+#| eval: true
+```
+:::::
+::::
+:::
+
+Während diejenigen, die richtig lagen im arithmetischen Mittelwert $`r round(mittelwerte[1],2)`$ Versuche nutzen, waren es bei denjenigen, die falsch lagen im Mittelwert nur $`r round(mittelwerte[2],2)`$ Versuche.
+
+::: callout-note
+## Hinweis
+
+Auch hier können jetzt entsprechende Standardfehler, Konfidenzintervalle oder Effektstärken bestimmt werden. Auch können vorab spezifizierte Hypothesen geprüft werden.
+:::
+
+## Analysis -- Checkliste
+
+- Die Datenauswertung beantwortet die Fragestellung (**P**roblem). [:ballot_box_with_check:]{.green}
+
+- Die Daten wurden ggf. visualisiert und durch angemessene Kennzahlen zusammengefasst. [:ballot_box_with_check:]{.green}
+
+- Die verwendeten Methoden passen zu den jeweiligen Skalenniveaus. [:ballot_box_with_check:]{.green}
+
+- Die Datenauswertung ist transparent und dokumentiert, z.B. durch den Programmcode. [:ballot_box_with_check:]{.green}
+
+- Die nötigen Bedingungen für die statistischen Methoden sind gegeben. [:ballot_box_with_check:]{.green}
+
+::: callout-tip
+## Tipp
+
+Für viele Analysemethoden liegen sind zusätzliche {{< fa brands r-project >}} Pakete verfügbar. Siehe z.B. <https://cran.r-project.org/web/views/>. Auch viele Lehrbücher zeigen die Umsetzung mit  {{< fa brands r-project >}}. 
+
+In RStudio kann der GitHub Copilot integriert werden (Hinweise [hier](https://docs.posit.co/ide/user/ide/guide/tools/copilot.html)).
+:::
+
+## Conclusion
+
+::: callout-important
+## Wichtig
+
+Gehen Sie immer kritisch auf die Limitationen Ihrer Arbeit ein.
+:::
+
+
+## Conclusion -- Checkliste
+
+Wasserstein, R. L., Schirm, A. L., & Lazar, N. A. (2019). Moving to a World Beyond “p < 0.05.” *The American Statistician*, 73(sup1), 1–19. <https://doi.org/10.1080/00031305.2019.1583913)>:
+
+> We summarize our recommendations in two sentences totaling seven words: “Accept uncertainty. Be thoughtful, open, and modest.” Remember “ATOM.”
+
+- **A** (Accept uncertainty): Anerkennung und Akzeptieren von Unsicherheit. [:ballot_box_with_check:]{.green}
+
+- **T** (thoughtful): Beachte und bedenke die Umstände, was ist das Ziel und der Kontext, wie ist der Prozess, wie lautet das Modell, welche Annahmen und Vorrausetzungen hat es? [:ballot_box_with_check:]{.green}
+
+- **O** (open): Offenheit und Transparenz (*Open Science*). [:ballot_box_with_check:]{.green}
+
+- **M** (modest): Bescheidenheit. [:ballot_box_with_check:]{.green}
+
+
+# Abspann
+
+## Mehr Beispiele
+
+::: {.columns}
+:::: {.column width="80%"}
+
+- A Student’s Guide to R (Übersetzung): [https://t1p.de/mhyop](https://t1p.de/mhyop)
+
+- Fallstudien: [https://fallstudien.netlify.app/](https://fallstudien.netlify.app/)
+
+- Masterarbeiten: [https://doi.org/10.1007/978-3-658-35831-0](https://doi.org/10.1007/978-3-658-35831-0)
+
+::::
+
+:::: {.column width="20%"}
+![](img/Sonstige/QFM.jpg){fig-align="center" width="80%"}
+::::
+:::
+
