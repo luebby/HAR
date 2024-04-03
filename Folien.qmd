@@ -475,6 +475,12 @@ In RStudio kann der GitHub Copilot integriert werden (Hinweise [hier](https://do
 
 ## Conclusion
 
+- Wie verbreitet ist das Problem des Confirmation Bias, genauer: Wie hoch ist der Anteil derjenigen, die eine Regel abgeben ohne einen Widerspruch erfahren zu haben?
+
+- Eine Gelegenheitsstichprobe von $n=`r nrow(Regeln)`$ FOM-Studierenden ergibt folgendes Ergebnis: $p=`r round(p_stipro*100,2)`\,\%$ haben mindestens einen Widerspruch  ($\pm 2\cdot `r round(se,4)`$). 
+
+- $H_0: \pi \geq 0.5$ wird mit einem p-Wert $<1/10000$ zum Signifikanzniveau $\alpha=5\,\%$ verworfen. Statistisch erkennbar weniger als die Hälfte gibt damit mit mindestens einen Widerspruch ab.
+
 ::: callout-important
 ## Wichtig
 
