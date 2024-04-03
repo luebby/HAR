@@ -308,7 +308,7 @@ Die Analysemethode hängt von der Verteilung der untersuchten Variablen ab.
 set.seed(1896)
 
 # Simuliere zufälliges Ziehen von Stichproben
-Bootvtlg <- do(1000) * prop( ~ fehl, success = "Ja",
+Bootvtlg <- do(10000) * prop( ~ fehl, success = "Ja",
                              resample(Regeln))
 
 # Standardfehler
@@ -356,7 +356,7 @@ Konfidenzintervalle werden häufig falsch interpretiert.
 set.seed(1896)
 
 # Simuliere Daten gemäß H_0
-Nullvtlg <- do(1000) * rflip(n = nrow(Regeln))
+Nullvtlg <- do(10000) * rflip(n = nrow(Regeln))
 
 # Visualisierung
 gf_histogram( ~ prop, data = Nullvtlg,
@@ -490,7 +490,7 @@ Gehen Sie immer kritisch auf die Limitationen Ihrer Arbeit ein.
 
 ## Conclusion -- Checkliste
 
-Wasserstein, R. L., Schirm, A. L., & Lazar, N. A. (2019). Moving to a World Beyond “p < 0.05.” *The American Statistician*, 73(sup1), 1–19. <https://doi.org/10.1080/00031305.2019.1583913)>:
+Wasserstein, R. L., Schirm, A. L., & Lazar, N. A. (2019). Moving to a World Beyond “p < 0.05.” *The American Statistician*, 73(sup1), 1–19. <https://doi.org/10.1080/00031305.2019.1583913>:
 
 > We summarize our recommendations in two sentences totaling seven words: “Accept uncertainty. Be thoughtful, open, and modest.” Remember “ATOM.”
 
