@@ -40,7 +40,7 @@ editor_options:
 ## Confirmation Bias
 
 ::: center
-![Quelle: [Sketchplanations](https://sketchplanations.com/confirmation-bias)](img/Sonstige/ConformationBias.avif){width=50% fig-align="center"}
+![Quelle: [Sketchplanations](https://sketchplanations.com/confirmation-bias)](img/Sonstige/ConformationBias.avif){width=50%}
 :::
 
 
@@ -134,6 +134,9 @@ Bei Umfragen etc. auf bewährte Messinstrumente zurückgreifen. Dabei aber Lizen
 
 Was schätzen Sie: Wie hoch ist der Anteil derjenigen, die eine Regel abgeben ohne einen Widerspruch erfahren zu haben?
 
+::: {.columns}
+:::: {.column width="50%"}
+
 -   **A**: 0-20%
 
 -   **B**: 21-40%
@@ -143,6 +146,17 @@ Was schätzen Sie: Wie hoch ist der Anteil derjenigen, die eine Regel abgeben oh
 -   **D**: 61-80%
 
 -   **E**: 81-100%
+
+::::
+
+:::: {.column width="50%"}
+::::: center
+![<https://tweedback.de/u29b/quiz>](img/Sonstige/tweedback.png){width=50%}
+:::::
+::::
+
+:::
+
 
 ## Data
 
