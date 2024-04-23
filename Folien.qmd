@@ -5,7 +5,7 @@ editor_options:
 ---
 # Vorspann
 
-<!-- Wichtig!!! Einmalig im Verzteichnis vorher im Terminal laufen lassen! -->
+<!-- Wichtig!!! Einmalig im Verzeichnis vorher im Terminal laufen lassen! -->
 <!-- quarto install extension quarto-ext/fontawesome -->
 
 ## Über mich :nerd_face:
@@ -81,7 +81,7 @@ Mit Literatur argumentieren. Hier Grundlagenwerk: Wason, P.C. (1960). On the fai
 
 ## Problem -- Checkliste
 
-- Die Fragstellung kann mit Daten beantwortet werden. [:ballot_box_with_check:]{.green}
+- Die Fragestellung kann mit Daten beantwortet werden. [:ballot_box_with_check:]{.green}
         
 - Es lohnt sich, die Fragestellung zu untersuchen. [:ballot_box_with_check:]{.green}
         
@@ -496,7 +496,7 @@ Wasserstein, R. L., Schirm, A. L., & Lazar, N. A. (2019). Moving to a World Beyo
 
 - **A** (Accept uncertainty): Anerkennung und Akzeptieren von Unsicherheit. [:ballot_box_with_check:]{.green}
 
-- **T** (thoughtful): Beachte und bedenke die Umstände, was ist das Ziel und der Kontext, wie ist der Prozess, wie lautet das Modell, welche Annahmen und Vorrausetzungen hat es? [:ballot_box_with_check:]{.green}
+- **T** (thoughtful): Beachte und bedenke die Umstände, was ist das Ziel und der Kontext, wie ist der Prozess, wie lautet das Modell, welche Annahmen und Voraussetzungen hat es? [:ballot_box_with_check:]{.green}
 
 - **O** (open): Offenheit und Transparenz (*Open Science*). [:ballot_box_with_check:]{.green}
 
