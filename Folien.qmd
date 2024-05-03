@@ -530,10 +530,12 @@ Wasserstein, R. L., Schirm, A. L., & Lazar, N. A. (2019). Moving to a World Beyo
 
 - Masterarbeiten: [https://doi.org/10.1007/978-3-658-35831-0](https://doi.org/10.1007/978-3-658-35831-0)
 
+<br>
+
+- :muscle: Beispiel in [Quarto](https://quarto.org/): <https://posit.cloud/content/8116467> 
 ::::
 
 :::: {.column width="20%"}
 ![](img/Sonstige/QFM.jpg){fig-align="center" width="80%"}
 ::::
 :::
-
